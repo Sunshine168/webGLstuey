@@ -8,9 +8,7 @@ $(function() {
 	var axis = new THREE.AxisHelper(10);
 	scene.add(axis);
 
-	var grid = new THREE.GridHelper(20, 5);
-	var color = new THREE.Color("rgb(255,0,0)");
-	grid.setColors(color, 0x000000);
+	var grid = new THREE.GridHelper(20, 5, "rgb(255,0,0)", 0x000000);
 
 	//增加网格
 	scene.add(grid);

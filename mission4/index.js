@@ -8,7 +8,7 @@ $(function() {
 
     function init() {
         scene = new THREE.Scene();
-        camera = new THREE.PerspectiveCamera(40, window.innerWidth / window / innerHeight, 1, 500);
+        camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 500);
         renderer = new THREE.WebGLRenderer({
             antialias: true,
             color: 0xdddddd
@@ -25,10 +25,7 @@ $(function() {
         axis = new THREE.AxisHelper(10);
         scene.add(axis);
 
-        grid = new THREE.GridHelper(50, 5);
-        color = new THREE.Color("rgb(255,0,0)");
-        grid.setColors(color, 0x000000);
-
+        grid = new THREE.GridHelper(50, 5, "rgb(255,0,0)", 0x000000);
         scene.add(grid);
 
         /*create cube*/
@@ -176,13 +173,13 @@ $(function() {
             spotLight.shadow.bias = value;
             spotLight.shadow.camera.updateProjectionMatrix();
         })
-
+        datGUI.close();
         $("#webGL").append(renderer.domElement);
         stats = new Stats();
         stats.domElement.style.position = 'absolute';
         stats.domElement.style.left = '0px';
         stats.domElement.style.top = '0px;';
-        $("#webGl").append(stats.domElement);
+        $("#webGL").append(stats.domElement);
     }
 
     function render() {
@@ -196,8 +193,6 @@ $(function() {
 
     function animate() {
         requestAnimationFrame(animate);
-        shadowCameraHelper.update();
-        lightHelper.update();
         render();
         stats.update();
         renderer.render(scene, camera)
